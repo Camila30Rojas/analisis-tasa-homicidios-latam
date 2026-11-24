@@ -23,3 +23,9 @@ source_id
 Unidad de medida: Por cada 100.000 habitantes.
 
 Fuente: CEPAL.
+
+Resultados principales
+Se analizaron las tasas de homicidio entre 1995 y 2017.
+Se compararon tres ciudades latinoamericanas.
+Se identificaron tendencias temporales.
+Se realizaron análisis de distribución y ranking.

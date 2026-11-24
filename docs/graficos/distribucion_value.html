@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    #vis.vega-embed {
+      width: 100%;
+      display: flex;
+    }
+
+    #vis.vega-embed details,
+    #vis.vega-embed details summary {
+      position: relative;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@6"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@6.4.1"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@7"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-caabc462cdf603c4227976d77cc75ff6"}, "mark": {"type": "bar"}, "encoding": {"tooltip": [{"bin": {"maxbins": 30}, "field": "value", "title": "Rango", "type": "quantitative"}, {"aggregate": "count", "title": "Frecuencia", "type": "quantitative"}], "x": {"bin": {"maxbins": 30}, "field": "value", "title": "Tasa de homicidios (por 100.000 habitantes)", "type": "quantitative"}, "y": {"aggregate": "count", "title": "Frecuencia", "type": "quantitative"}}, "height": 400, "title": "Distribucion de la tasa de homicidios", "width": 700, "$schema": "https://vega.github.io/schema/vega-lite/v6.4.1.json", "datasets": {"data-caabc462cdf603c4227976d77cc75ff6": [{"value": 6.654430352}, {"value": 54.05}, {"value": 7.377737999}, {"value": 54.43}, {"value": 8.929259357}, {"value": 53.27}, {"value": 7.892085039}, {"value": 57.4}, {"value": 7.584704688}, {"value": 64.24}, {"value": 7.447776555}, {"value": 10.7}, {"value": 58.42}, {"value": 7.841432016}, {"value": 11.4}, {"value": 56.82}, {"value": 8.98202735}, {"value": 10.9}, {"value": 53.88}, {"value": 6.279463899}, {"value": 11.2}, {"value": 46.83}, {"value": 6.445125853}, {"value": 10.9}, {"value": 36.58}, {"value": 10.1}, {"value": 25.85}, {"value": 6.591826503}, {"value": 9.4}, {"value": 21.51}, {"value": 6.24013501}, {"value": 9.7}, {"value": 15.85}, {"value": 7.643021015}, {"value": 10.6}, {"value": 13.1}, {"value": 8.059894986}, {"value": 11.1}, {"value": 13.46}, {"value": 7.804854337}, {"value": 12.2}, {"value": 12.94}, {"value": 8.142259383}, {"value": 12.3}, {"value": 9.5}, {"value": 11.25961095}, {"value": 12.2}, {"value": 15.24}, {"value": 11.83203014}, {"value": 12.5}, {"value": 14.93}, {"value": 11.09813089}, {"value": 11.7}, {"value": 10.64}, {"value": 11.65}, {"value": 12.2}, {"value": 14.4}]}};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>

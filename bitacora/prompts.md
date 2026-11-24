@@ -10,3 +10,16 @@ Ninguna.
 
 Motivo
 La estructura fue creada correctamente.
+
+Prompt 2
+Objetivo
+Analizar la distribución de la tasa de homicidios.
+
+Prompt
+(pegar el prompt)
+
+Resultado
+Se generó un histograma y estadísticas descriptivas.
+
+Correcciones
+Ninguna.
