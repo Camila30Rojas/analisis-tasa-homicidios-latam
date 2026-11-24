@@ -287,6 +287,24 @@
 
     <section>
       <h2>Metodología</h2>
+      <p>
+        Se utilizó el archivo Excel de CEPAL, hoja <code>datos</code>, con 57 registros y 7 variables.
+        Cada registro corresponde a una observación de una ciudad en un año. El conjunto incluye
+        Montevideo, Ciudad de México y São Paulo, y cubre el período de 1995 a 2017.
+      </p>
+      <p>
+        Para el análisis se utilizaron principalmente <code>Ciudad (País)</code>,
+        <code>Años__ESTANDAR</code> y <code>value</code>. La variable <code>value</code>
+        representa la tasa de homicidios por cada 100.000 habitantes. Se convirtió a formato
+        numérico y se omitieron de los cálculos los registros sin ciudad o tasa; en este dataset,
+        las 57 tasas son numéricas y las variables clave no presentan valores faltantes.
+      </p>
+      <p>
+        Se resumió la distribución general con estadísticas descriptivas y un boxplot de tasas por
+        ciudad. Además, se agruparon las observaciones por ciudad para comparar sus tasas promedio,
+        mínimas y máximas. La fuente original se conserva y no se imputan valores faltantes.
+      </p>
+      <h3>Herramientas</h3>
       <ul class="methodology">
         <li>GitHub Codespaces</li>
         <li>GitHub Copilot Agent</li>
@@ -302,7 +320,7 @@
         <article class="chart-card">
           <h3>Distribución de la tasa de homicidios</h3>
           <iframe src="graficos/distribucion_value.html"
-                  title="Histograma de la distribución de la tasa de homicidios"></iframe>
+                  title="Boxplot de la tasa de homicidios por ciudad"></iframe>
         </article>
 
         <article class="chart-card">

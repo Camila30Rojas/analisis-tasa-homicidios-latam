@@ -40,27 +40,31 @@ def main() -> None:
 
     chart = (
         alt.Chart(df.dropna(subset=[CITY_COLUMN, "value"]))
-        .mark_bar(opacity=0.85)
+        .mark_boxplot()
         .encode(
             x=alt.X(
+                f"{CITY_COLUMN}:N",
+                sort=CITY_DOMAIN,
+                title="Ciudad",
+                axis=alt.Axis(labelAngle=-20),
+            ),
+            y=alt.Y(
                 "value:Q",
-                bin=alt.Bin(maxbins=30),
                 title="Tasa de homicidios (por 100.000 habitantes)",
             ),
-            y=alt.Y("count():Q", title="Frecuencia"),
             color=alt.Color(
                 f"{CITY_COLUMN}:N",
                 title="Ciudad",
                 scale=alt.Scale(domain=CITY_DOMAIN, range=CITY_RANGE),
+                legend=None,
             ),
             tooltip=[
                 alt.Tooltip(f"{CITY_COLUMN}:N", title="Ciudad"),
-                alt.Tooltip("value:Q", bin=alt.Bin(maxbins=30), title="Rango"),
-                alt.Tooltip("count():Q", title="Frecuencia"),
+                alt.Tooltip("value:Q", title="Tasa", format=".2f"),
             ],
         )
         .properties(
-            title="Distribucion de la tasa de homicidios",
+            title="Distribucion de la tasa de homicidios por ciudad",
             width=700,
             height=400,
         )
@@ -94,7 +98,7 @@ def main() -> None:
 
     print("\nResumen interpretativo:")
     print(summary)
-    print(f"Histograma guardado en: {CHART_PATH}")
+    print(f"Boxplot guardado en: {CHART_PATH}")
     print(f"Resumen guardado en: {SUMMARY_PATH}")
 
 
