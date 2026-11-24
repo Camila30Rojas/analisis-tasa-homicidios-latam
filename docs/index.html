@@ -6,14 +6,15 @@
   <title>Análisis de la tasa de homicidios en ciudades latinoamericanas</title>
   <style>
     :root {
-      --navy: #183153;
-      --blue: #356ea8;
-      --cream: #f7f9fc;
+      --primary: #0B5563;
+      --sky: #8ECAE6;
+      --lilac: #B388EB;
+      --lilac-soft: #E9D5FF;
+      --cream: #F8F5FF;
       --white: #ffffff;
-      --text: #263238;
+      --text: #2D3748;
       --muted: #64748b;
-      --border: #dbe3ec;
-      --accent: #d97706;
+      --border: #dceaf0;
     }
 
     * {
@@ -22,17 +23,41 @@
 
     body {
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: "Segoe UI", Arial, Helvetica, sans-serif;
       color: var(--text);
-      background: var(--cream);
+      background:
+        radial-gradient(circle at top right, rgba(179, 136, 235, 0.14), transparent 25rem),
+        var(--cream);
       line-height: 1.6;
     }
 
     header {
-      background: var(--navy);
+      position: relative;
+      overflow: hidden;
+      background: #0B5563;
       color: var(--white);
-      padding: 3.5rem 1.25rem 3rem;
+      padding: 4.5rem 1.25rem 4rem;
       text-align: center;
+    }
+
+    header::before,
+    header::after {
+      content: "";
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.13);
+    }
+
+    header::before {
+      top: -180px;
+      left: -70px;
+    }
+
+    header::after {
+      right: -100px;
+      bottom: -220px;
     }
 
     header h1 {
@@ -40,12 +65,33 @@
       margin: 0 auto 0.75rem;
       font-size: clamp(2rem, 5vw, 3.4rem);
       line-height: 1.15;
+      color: var(--white);
+      position: relative;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
     }
 
     header p {
       margin: 0;
-      color: #dce6f2;
+      color: #ffffff;
       font-size: 1.1rem;
+      font-weight: 600;
+      position: relative;
+    }
+
+    .author-name,
+    .author-label {
+      font-size: 1.35em;
+      font-weight: 800;
+      letter-spacing: 0.01em;
+      text-shadow: 0 1px 8px rgba(45, 55, 72, 0.18);
+    }
+
+    .author-name {
+      color: var(--lilac);
+    }
+
+    .author-label {
+      color: #8ECAE6;
     }
 
     main {
@@ -56,22 +102,22 @@
     section {
       background: var(--white);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 16px;
       margin-bottom: 1.25rem;
-      padding: 1.5rem;
-      box-shadow: 0 4px 16px rgba(24, 49, 83, 0.06);
+      padding: 1.75rem;
+      box-shadow: 0 10px 28px rgba(11, 85, 99, 0.08);
     }
 
     h2 {
       margin-top: 0;
-      color: var(--navy);
-      border-bottom: 3px solid var(--accent);
+      color: var(--primary);
+      border-bottom: 3px solid var(--sky);
       display: inline-block;
       padding-bottom: 0.25rem;
     }
 
     h3 {
-      color: var(--blue);
+      color: var(--primary);
       margin-bottom: 0.5rem;
     }
 
@@ -87,8 +133,12 @@
     .question {
       margin: 0;
       font-size: clamp(1.15rem, 3vw, 1.5rem);
-      color: var(--navy);
+      color: var(--primary);
       font-weight: bold;
+      border-left: 5px solid var(--lilac);
+      background: linear-gradient(90deg, rgba(233, 213, 255, 0.62), rgba(142, 202, 230, 0.12));
+      padding: 1rem 1.25rem;
+      border-radius: 0 10px 10px 0;
     }
 
     .methodology {
@@ -100,13 +150,20 @@
     }
 
     .methodology li {
-      background: #edf4fb;
-      border: 1px solid #cfdeed;
-      border-radius: 8px;
-      padding: 0.75rem;
+      background: linear-gradient(145deg, rgba(142, 202, 230, 0.24), rgba(233, 213, 255, 0.58));
+      border: 1px solid rgba(142, 202, 230, 0.76);
+      border-radius: 10px;
+      padding: 1rem 0.75rem;
       text-align: center;
       font-weight: bold;
-      color: var(--navy);
+      color: var(--primary);
+      box-shadow: 0 5px 14px rgba(11, 85, 99, 0.07);
+      transition: transform 160ms ease, box-shadow 160ms ease;
+    }
+
+    .methodology li:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 9px 18px rgba(11, 85, 99, 0.12);
     }
 
     .chart-grid {
@@ -117,14 +174,22 @@
 
     .chart-card {
       border: 1px solid var(--border);
-      border-radius: 10px;
+      border-radius: 14px;
       overflow: hidden;
       background: var(--white);
+      box-shadow: 0 8px 22px rgba(11, 85, 99, 0.10);
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    .chart-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 13px 28px rgba(11, 85, 99, 0.14);
     }
 
     .chart-card h3 {
       margin: 0;
-      padding: 1rem 1rem 0.25rem;
+      padding: 1.15rem 1.15rem 0.35rem;
+      border-left: 4px solid var(--lilac);
     }
 
     iframe {
@@ -136,6 +201,7 @@
 
     .credits {
       color: var(--muted);
+      background: linear-gradient(135deg, rgba(142, 202, 230, 0.14), rgba(233, 213, 255, 0.38));
     }
 
     footer {
@@ -193,7 +259,7 @@
 <body>
   <header>
     <h1>Análisis de la tasa de homicidios en ciudades latinoamericanas</h1>
-    <p>Autor: Laura Camila Rojas Santos</p>
+    <p><span class="author-label">Autor</span>: <span class="author-name">Laura Camila Rojas Santos</span></p>
   </header>
 
   <main>

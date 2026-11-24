@@ -3,6 +3,8 @@ from pathlib import Path
 import altair as alt
 import pandas as pd
 
+from esquema_colores import CITY_COLUMN, CITY_DOMAIN, CITY_RANGE
+
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DATA_PATH = PROJECT_ROOT / "datos" / "crudo" / "homicidios_latam.xlsx"
@@ -13,7 +15,8 @@ SUMMARY_PATH = OUTPUT_DIR / "resumen_distribucion.md"
 
 def main() -> None:
     df = pd.read_excel(DATA_PATH, sheet_name="datos")
-    value = pd.to_numeric(df["value"], errors="coerce").dropna()
+    df["value"] = pd.to_numeric(df["value"], errors="coerce")
+    value = df["value"].dropna()
 
     if value.empty:
         raise ValueError("La columna 'value' no contiene valores numericos.")
@@ -36,8 +39,8 @@ def main() -> None:
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
     chart = (
-        alt.Chart(pd.DataFrame({"value": value}))
-        .mark_bar()
+        alt.Chart(df.dropna(subset=[CITY_COLUMN, "value"]))
+        .mark_bar(opacity=0.85)
         .encode(
             x=alt.X(
                 "value:Q",
@@ -45,7 +48,13 @@ def main() -> None:
                 title="Tasa de homicidios (por 100.000 habitantes)",
             ),
             y=alt.Y("count():Q", title="Frecuencia"),
+            color=alt.Color(
+                f"{CITY_COLUMN}:N",
+                title="Ciudad",
+                scale=alt.Scale(domain=CITY_DOMAIN, range=CITY_RANGE),
+            ),
             tooltip=[
+                alt.Tooltip(f"{CITY_COLUMN}:N", title="Ciudad"),
                 alt.Tooltip("value:Q", bin=alt.Bin(maxbins=30), title="Rango"),
                 alt.Tooltip("count():Q", title="Frecuencia"),
             ],

@@ -3,13 +3,14 @@ from pathlib import Path
 import altair as alt
 import pandas as pd
 
+from esquema_colores import CITY_COLUMN
+
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DATA_PATH = PROJECT_ROOT / "datos" / "crudo" / "homicidios_latam.xlsx"
 OUTPUT_DIR = PROJECT_ROOT / "docs" / "graficos"
 CHART_PATH = OUTPUT_DIR / "ranking_ciudades.html"
 SUMMARY_PATH = OUTPUT_DIR / "resumen_ranking_ciudades.md"
-CITY_COLUMN = "Ciudad (País)"
 VALUE_COLUMN = "value"
 
 
@@ -50,6 +51,22 @@ def main() -> None:
                 f"{CITY_COLUMN}:N",
                 sort="-x",
                 title="Ciudad",
+            ),
+            color=alt.Color(
+                "Ciudad (País):N",
+                scale=alt.Scale(
+                    domain=[
+                        "MONTEVIDEO - DEPARTAMENTO (URUGUAY)",
+                        "MÉXICO D.F. (MÉXICO)",
+                        "MUNICIPIO DE SAO PAULO (BRASIL)",
+                    ],
+                    range=[
+                        "#0B5563",
+                        "#1D70A2",
+                        "#8ECAE6",
+                    ],
+                ),
+                legend=alt.Legend(title="Ciudad"),
             ),
             tooltip=[
                 alt.Tooltip(f"{CITY_COLUMN}:N", title="Ciudad"),
