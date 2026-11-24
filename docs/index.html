@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Análisis de la tasa de homicidios en ciudades latinoamericanas</title>
+  <style>
+    :root {
+      --navy: #183153;
+      --blue: #356ea8;
+      --cream: #f7f9fc;
+      --white: #ffffff;
+      --text: #263238;
+      --muted: #64748b;
+      --border: #dbe3ec;
+      --accent: #d97706;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: var(--cream);
+      line-height: 1.6;
+    }
+
+    header {
+      background: var(--navy);
+      color: var(--white);
+      padding: 3.5rem 1.25rem 3rem;
+      text-align: center;
+    }
+
+    header h1 {
+      max-width: 900px;
+      margin: 0 auto 0.75rem;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      line-height: 1.15;
+    }
+
+    header p {
+      margin: 0;
+      color: #dce6f2;
+      font-size: 1.1rem;
+    }
+
+    main {
+      width: min(1120px, calc(100% - 2rem));
+      margin: 2rem auto 3rem;
+    }
+
+    section {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 1.25rem;
+      padding: 1.5rem;
+      box-shadow: 0 4px 16px rgba(24, 49, 83, 0.06);
+    }
+
+    h2 {
+      margin-top: 0;
+      color: var(--navy);
+      border-bottom: 3px solid var(--accent);
+      display: inline-block;
+      padding-bottom: 0.25rem;
+    }
+
+    h3 {
+      color: var(--blue);
+      margin-bottom: 0.5rem;
+    }
+
+    ul {
+      margin: 0.5rem 0 0;
+      padding-left: 1.25rem;
+    }
+
+    li {
+      margin-bottom: 0.45rem;
+    }
+
+    .question {
+      margin: 0;
+      font-size: clamp(1.15rem, 3vw, 1.5rem);
+      color: var(--navy);
+      font-weight: bold;
+    }
+
+    .methodology {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 0.75rem;
+      list-style: none;
+      padding: 0;
+    }
+
+    .methodology li {
+      background: #edf4fb;
+      border: 1px solid #cfdeed;
+      border-radius: 8px;
+      padding: 0.75rem;
+      text-align: center;
+      font-weight: bold;
+      color: var(--navy);
+    }
+
+    .chart-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+
+    .chart-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      background: var(--white);
+    }
+
+    .chart-card h3 {
+      margin: 0;
+      padding: 1rem 1rem 0.25rem;
+    }
+
+    iframe {
+      width: 100%;
+      height: 520px;
+      border: 0;
+      display: block;
+    }
+
+    .credits {
+      color: var(--muted);
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+
+    @media (min-width: 900px) {
+      .chart-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .chart-card:first-child {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 700px) {
+      header {
+        padding: 2.25rem 1rem;
+      }
+
+      main {
+        width: min(100% - 1rem, 1120px);
+        margin-top: 1rem;
+      }
+
+      section {
+        padding: 1.1rem;
+        border-radius: 8px;
+      }
+
+      .methodology {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      iframe {
+        height: 430px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .methodology {
+        grid-template-columns: 1fr;
+      }
+
+      iframe {
+        height: 380px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Análisis de la tasa de homicidios en ciudades latinoamericanas</h1>
+    <p>Autor: Laura Camila Rojas Santos</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Objetivo del proyecto</h2>
+      <p>
+        Analizar la evolución de la tasa de homicidios en Montevideo, Ciudad de México y São Paulo
+        entre 1995 y 2017.
+      </p>
+    </section>
+
+    <section>
+      <h2>Descripción de los datos</h2>
+      <p>
+        Dataset de CEPAL con registros históricos de tasas de homicidio por cada 100.000 habitantes.
+      </p>
+    </section>
+
+    <section>
+      <h2>Pregunta principal</h2>
+      <p class="question">
+        ¿Cómo ha evolucionado la tasa de homicidios en las ciudades estudiadas durante el período analizado?
+      </p>
+    </section>
+
+    <section>
+      <h2>Metodología</h2>
+      <ul class="methodology">
+        <li>GitHub Codespaces</li>
+        <li>GitHub Copilot Agent</li>
+        <li>Python</li>
+        <li>Pandas</li>
+        <li>Altair</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Gráficos</h2>
+      <div class="chart-grid">
+        <article class="chart-card">
+          <h3>Distribución de la tasa de homicidios</h3>
+          <iframe src="graficos/distribucion_value.html"
+                  title="Histograma de la distribución de la tasa de homicidios"></iframe>
+        </article>
+
+        <article class="chart-card">
+          <h3>Ranking de ciudades</h3>
+          <iframe src="graficos/ranking_ciudades.html"
+                  title="Ranking de tasas promedio por ciudad"></iframe>
+        </article>
+
+        <article class="chart-card">
+          <h3>Comparación entre ciudades</h3>
+          <iframe src="graficos/comparacion_ciudades.html"
+                  title="Comparación de promedio, mínimo y máximo por ciudad"></iframe>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Hallazgos principales</h2>
+      <ul>
+        <li>Se analizaron tres ciudades latinoamericanas.</li>
+        <li>El dataset cubre los años 1995 a 2017.</li>
+        <li>Se identificaron diferencias entre las ciudades y variaciones a través del tiempo.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Limitaciones</h2>
+      <ul>
+        <li>Solo se analizaron tres ciudades.</li>
+        <li>Los resultados dependen de la información disponible en el dataset.</li>
+      </ul>
+    </section>
+
+    <section class="credits">
+      <h2>Créditos</h2>
+      <p>Fuente: CEPAL.</p>
+      <p>El código fue desarrollado con apoyo de GitHub Copilot Agent.</p>
+    </section>
+  </main>
+
+  <footer>
+    Análisis exploratorio de tasas de homicidio en ciudades latinoamericanas
+  </footer>
+</body>
+</html>
